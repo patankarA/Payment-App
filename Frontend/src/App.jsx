@@ -4,6 +4,8 @@ import { Signin } from "./pages/Signin"
 import { Dashboard } from "./pages/Dashboard"
 import { SendMoney } from "./pages/SendMoney"
 import { Home } from "./pages/Home"
+import { CheckBalance } from "./pages/CheckBalance"
+import { Transactions } from "./pages/Transactions"
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/send"  element={<SendMoney/>}  />
       <Route path="/" element={<Home/>}/>
+      <Route path="/checkbalance" element={<CheckBalance/>}/>
+      <Route path="/transactions" element={<Transactions/>}/>
     </Routes>
     </BrowserRouter>
     </>

@@ -17,10 +17,10 @@ export function Signin(){
             <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
                 <Heading lable={"Sign in"}/>
                 <Subheading lable={"Enter your credentials to access your account"} />
-                <InputBox lable={"Email"} placeholder={"akshay@gmail.com"} onChange={(e)=>{
+                <InputBox type={"email"} lable={"Email"} placeholder={"email"} onChange={(e)=>{
                      setUsername(e.target.value);
                 }}/>
-                <InputBox lable={"Password"} placeholder={"123456"}  onChange={(e)=>{
+                <InputBox type={"password"} lable={"Password"} placeholder={"password"}  onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
                 <div className="pt-4">
@@ -30,6 +30,7 @@ export function Signin(){
                             password
                         })
                         localStorage.setItem("token", response.data.token)
+                        console.log("token is "+ response.data.token);
                         navigate("/dashboard")
                     }}/>
                 </div>

@@ -21,16 +21,16 @@ export const Signup =() => {
                 <div className="bg-white rounded-lg w-80 text-center p-2 h-max px-4 ">
                 <Heading lable={"Sign up"}/>
                 <Subheading lable={"Enter your informaton to create an account"}/> 
-                <InputBox lable={"First Name"} placeholder={"Akshay"} onChange={(e)=>{
+                <InputBox type={"name"} lable={"First Name"} placeholder={"first Name"} onChange={(e)=>{
                     setFirstName(e.target.value);
                 }} /> 
-                <InputBox lable={"Last Name"} placeholder={"Patankar"} onChange={(e)=>{
+                <InputBox type={"name"} lable={"Last Name"} placeholder={"last Name"} onChange={(e)=>{
                     setLastName(e.target.value);
                 }} />  
-                <InputBox lable={"Email"} placeholder={"akshay@gmail.com"} onChange={(e)=>{
+                <InputBox type={"email"} lable={"Email"} placeholder={"email"} onChange={(e)=>{
                     setUsername(e.target.value);
                 }} />
-                <InputBox lable={"Password"} placeholder={"123456"} onChange={(e)=>{
+                <InputBox type={"password"} lable={"Password"} placeholder={"password"} onChange={(e)=>{
                     setPassword(e.target.value);
                 }} /> 
                 <div className="pt-4">

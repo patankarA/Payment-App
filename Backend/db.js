@@ -47,14 +47,38 @@ const accountSchema = new mongoose.Schema({
     }
 });
 
+//defing  Schema for transition history
+
+const transitionsSchema = new mongoose.Schema({
+    senderId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:true
+    },
+    reciverId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:true
+    },
+    amount:{
+        type:Number,
+        required:true
+    }
+});
+
+
 //creating model for userSchema
 const User = mongoose.model('User',userSchema);
 
 //creating model for accountSchema
 const Account = mongoose.model('Account',accountSchema);
 
+//
+const Transactions  = mongoose.model('Transactions',transitionsSchema);
+
 //export
 module.exports = {
     User,
-    Account
+    Account,
+    Transactions
 };

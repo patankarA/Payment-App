@@ -8,7 +8,7 @@ import { Users } from "../components/Users";
     return <div>
       <Appbar/>
       <div className="mt-8">
-        <Balance value={"10,000"}/>
+        <Balance/>
         <Users/>
       </div>
       
