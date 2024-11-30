@@ -35,7 +35,8 @@ router.post("/signup", async( req , res )=>{
         }
         //check if user is already exists or not
         const userExist =await User.findOne({
-            username: req.body.username
+            //username: req.body.username
+            where: { username: req.body.username }
         });
         if(userExist)
         {
@@ -99,8 +100,9 @@ router.post("/signin",async (req ,res) => {
     }
     //find user info in DB
     const user = await User.findOne({
-        username : req.body.username,
-        password : req.body.password
+        //username : req.body.username,
+        //password : req.body.password
+        where: { username: req.body.username, password: req.body.password }
     });
     if(!user)
     {
@@ -132,14 +134,16 @@ const updateBody = zod.object({
 
 router.put("/" , authMiddleware , async (req,res) =>{
     try {
-        const {success} = updateBody.safeParse(req.body)
-        if(!success)
+        //const {success} = updateBody.safeParse(req.body)
+        //if(!success)
+        const validation = updateBody.safeParse(req.body);
+        if (!validation.success)
         {
             return res.status(411).json({
                 msg:"Error while updataing information "
             })
         }
-        const filter = { _id: req.userId};
+        const filter = {where :{ _id: req.userId}};
         const update = {
             password : req.body.password,
             firstName : req.body.firstName,
@@ -166,17 +170,25 @@ router.put("/" , authMiddleware , async (req,res) =>{
 
 router.get("/bulk",async (req,res) => {
     const filter = req.query.filter || "";
-    const users = await User.find({
-        $or: [{
-            firstName: {
-                "$regex": filter
-            }
-        }, {
-            lastName: {
-                "$regex": filter
-            }
-        }]
-    })
+    // const users = await User.find({
+    //     $or: [{
+    //         firstName: {
+    //             "$regex": filter
+    //         }
+    //     }, {
+    //         lastName: {
+    //             "$regex": filter
+    //         }
+    //     }]
+    // })
+    const users = await User.findAll({
+        where: {
+            [Sequelize.Op.or]: [
+                { firstName: { [Sequelize.Op.like]: `%${filter}%` } },
+                { lastName: { [Sequelize.Op.like]: `%${filter}%` } }
+            ]
+        }
+    });
     res.json({
         user:users.map(user => ({
             username: user.username,
