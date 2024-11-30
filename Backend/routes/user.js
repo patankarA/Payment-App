@@ -12,6 +12,8 @@ const { JWT_SECRET } = require("../config");
 
 const { authMiddleware } = require('../middleware');
 
+const { Sequelize } = require('sequelize');
+
 //*****************SignUp**********************//
 
 //create the zod Schema
@@ -53,22 +55,22 @@ router.post("/signup", async( req , res )=>{
             lastName : req.body.lastName
         });
 
-        const userId = user._id;
+        const userId = user.id;
 
         //create bank account in DataBase
         await Account.create({
-            userId: userId,
+            userId: user.id,
             balance: Math.floor(1 + Math.random()*1000)
         })
     
         //create the token
-        const token = jwt.sign({
-            userId
-        },JWT_SECRET)
+        // const token = jwt.sign({
+        //     userId
+        // },JWT_SECRET)
 
         return res.json({
-            msg:"user created successfully.",
-            token:token
+            msg:"user created successfully."
+            //token:token
         });
         
     } catch (error) {
@@ -114,14 +116,14 @@ router.post("/signin",async (req ,res) => {
 
 
     //
-    const token = jwt.sign({
-        userId:user._id
-    }, JWT_SECRET);
+    // const token = jwt.sign({
+    //     userId:user.idN
+    // }, JWT_SECRET);
 
-    res.json({
-        msg:"user signin successfully.",
-        token:token
-    })
+    // res.json({
+    //     msg:"user signin successfully.",
+    //     token:token
+    // })
 })
 
 //*****************Update*********************//
