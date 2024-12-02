@@ -14,14 +14,14 @@ export function Users(){
              })
     },[filter])
 
-    return <div className="ml-2">
+    return <div className="ml-2 bg-gradient-to-r from-blue-500 to-purple-600">
          <div className="font-bold mt-6 text-lg">
             Users
          </div>
          <div className="my-2">
             <input type="text" placeholder="Search users..." onChange={(e)=>{
                 setFilter(e.target.value)
-            }}/>
+            }} className="rounded-lg"/>
          </div>
          <div>
                 {users.map(user => <User user={user} />)}
@@ -34,7 +34,7 @@ function User({user}) {
 
     return <div className="flex justify-between">
         <div className="flex">
-            <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
+            <div className="rounded-full h-12 w-12 bg-gradient-to-r from-blue-500 to-purple-600 flex justify-center mt-1 mr-2">
                 <div className="flex flex-col justify-center h-full text-xl">
                     {user.firstName[0]}
                 </div>

@@ -17,6 +17,11 @@ export const  Balance = () => {
                 navigate("/transactions")
             }}/>
         </div>
+        <div className="ml-4 text-lg">
+            <Button lable={"Logout"} onClick={(e)=>{
+                navigate("/")
+            }}/>
+        </div>
         
     </div>
     )

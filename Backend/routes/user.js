@@ -45,6 +45,7 @@ router.post("/signup", async( req , res )=>{
         }
         //if not then
         //save user information in DataBase
+        console.log(req.body.username)
         const user = await User.create({
             username : req.body.username,
             password : req.body.password,

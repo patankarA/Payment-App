@@ -16,7 +16,7 @@ export const Signup =() => {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-slate-300 h-screen flex justify-center">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-screen flex justify-center">
             <div className="flex flex-col justify-center">
                 <div className="bg-white rounded-lg w-80 text-center p-2 h-max px-4 ">
                 <Heading lable={"Sign up"}/>

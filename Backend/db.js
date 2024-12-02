@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://new_user18:user123@cluster0.bazvvyc.mongodb.net/PaymentApp');
+async function connectToDatabase(){
+    try {
+        await mongoose.connect('mongodb+srv://new_user18:user123@cluster0.bazvvyc.mongodb.net/PaymentApp');
+        console.log("database is connected")
+    } catch (error) {
+        console.log(error);
+        throw new Error("Could not Connect to database");
+    }
+}
+connectToDatabase();
 
 //defining Schema for users
 
